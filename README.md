@@ -16,3 +16,7 @@ iOS
 
 - Open `ThumeTraque.xcodeproj` in Xcode.
 - Click `Product` > `Test` or `Cmd+U`.
+
+## Attributions
+
+- Thyme [icon](https://www.flaticon.com/free-icons/thyme) created by Icongeek26 - Flaticon.
