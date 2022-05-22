@@ -13,6 +13,8 @@
 		6D7C78E8283A7C31006038D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C78E7283A7C31006038D3 /* Preview Assets.xcassets */; };
 		6D7C78F5283A7C53006038D3 /* ThymeTraqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */; };
 		6D7C78FD283A7C98006038D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7C78FC283A7C98006038D3 /* ComposableArchitecture */; };
+		6D7C7907283A8944006038D3 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C7906283A8944006038D3 /* TrackView.swift */; };
+		6D7C7909283A8955006038D3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C7908283A8955006038D3 /* HistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThymeTraqueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThymeTraqueTests.swift; sourceTree = "<group>"; };
 		6D7C78FE283A7CE9006038D3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6D7C7906283A8944006038D3 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		6D7C7908283A8955006038D3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +81,8 @@
 		6D7C78DF283A7C2F006038D3 /* ThymeTraque */ = {
 			isa = PBXGroup;
 			children = (
+				6D7C78FF283A88C5006038D3 /* Features */,
 				6D7C78E0283A7C2F006038D3 /* ThymeTraqueApp.swift */,
-				6D7C78E2283A7C2F006038D3 /* ContentView.swift */,
 				6D7C78E4283A7C31006038D3 /* Assets.xcassets */,
 				6D7C78E6283A7C31006038D3 /* Preview Content */,
 			);
@@ -99,6 +103,64 @@
 				6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */,
 			);
 			path = ThymeTraqueTests;
+			sourceTree = "<group>";
+		};
+		6D7C78FF283A88C5006038D3 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C7900283A88D0006038D3 /* App */,
+				6D7C7901283A88D7006038D3 /* Track */,
+				6D7C7902283A88DD006038D3 /* History */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6D7C7900283A88D0006038D3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C7903283A8910006038D3 /* View */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6D7C7901283A88D7006038D3 /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C7904283A8928006038D3 /* View */,
+			);
+			path = Track;
+			sourceTree = "<group>";
+		};
+		6D7C7902283A88DD006038D3 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C7905283A8930006038D3 /* View */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		6D7C7903283A8910006038D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C78E2283A7C2F006038D3 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6D7C7904283A8928006038D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C7906283A8944006038D3 /* TrackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6D7C7905283A8930006038D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C7908283A8955006038D3 /* HistoryView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D7C78E3283A7C2F006038D3 /* ContentView.swift in Sources */,
+				6D7C7909283A8955006038D3 /* HistoryView.swift in Sources */,
+				6D7C7907283A8944006038D3 /* TrackView.swift in Sources */,
 				6D7C78E1283A7C2F006038D3 /* ThymeTraqueApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
