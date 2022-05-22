@@ -11,7 +11,19 @@
 		6D7C78E3283A7C2F006038D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C78E2283A7C2F006038D3 /* ContentView.swift */; };
 		6D7C78E5283A7C31006038D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C78E4283A7C31006038D3 /* Assets.xcassets */; };
 		6D7C78E8283A7C31006038D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C78E7283A7C31006038D3 /* Preview Assets.xcassets */; };
+		6D7C78F5283A7C53006038D3 /* ThymeTraqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */; };
+		6D7C78FD283A7C98006038D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7C78FC283A7C98006038D3 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D7C78F6283A7C53006038D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D7C78D5283A7C2F006038D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D7C78DC283A7C2F006038D3;
+			remoteInfo = ThymeTraque;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6D7C78DD283A7C2F006038D3 /* ThymeTraque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThymeTraque.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,10 +31,21 @@
 		6D7C78E2283A7C2F006038D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6D7C78E4283A7C31006038D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D7C78E7283A7C31006038D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThymeTraqueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThymeTraqueTests.swift; sourceTree = "<group>"; };
+		6D7C78FE283A7CE9006038D3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6D7C78DA283A7C2F006038D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D7C78FD283A7C98006038D3 /* ComposableArchitecture in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D7C78EF283A7C53006038D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -35,7 +58,9 @@
 		6D7C78D4283A7C2F006038D3 = {
 			isa = PBXGroup;
 			children = (
+				6D7C78FE283A7CE9006038D3 /* README.md */,
 				6D7C78DF283A7C2F006038D3 /* ThymeTraque */,
+				6D7C78F3283A7C53006038D3 /* ThymeTraqueTests */,
 				6D7C78DE283A7C2F006038D3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				6D7C78DD283A7C2F006038D3 /* ThymeTraque.app */,
+				6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +93,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		6D7C78F3283A7C53006038D3 /* ThymeTraqueTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */,
+			);
+			path = ThymeTraqueTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +117,30 @@
 			dependencies = (
 			);
 			name = ThymeTraque;
+			packageProductDependencies = (
+				6D7C78FC283A7C98006038D3 /* ComposableArchitecture */,
+			);
 			productName = ThymeTraque;
 			productReference = 6D7C78DD283A7C2F006038D3 /* ThymeTraque.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6D7C78F1283A7C53006038D3 /* ThymeTraqueTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D7C78F8283A7C53006038D3 /* Build configuration list for PBXNativeTarget "ThymeTraqueTests" */;
+			buildPhases = (
+				6D7C78EE283A7C53006038D3 /* Sources */,
+				6D7C78EF283A7C53006038D3 /* Frameworks */,
+				6D7C78F0283A7C53006038D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D7C78F7283A7C53006038D3 /* PBXTargetDependency */,
+			);
+			name = ThymeTraqueTests;
+			productName = ThymeTraqueTests;
+			productReference = 6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +155,10 @@
 					6D7C78DC283A7C2F006038D3 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
+					6D7C78F1283A7C53006038D3 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 6D7C78DC283A7C2F006038D3;
+					};
 				};
 			};
 			buildConfigurationList = 6D7C78D8283A7C2F006038D3 /* Build configuration list for PBXProject "ThymeTraque" */;
@@ -111,11 +170,15 @@
 				Base,
 			);
 			mainGroup = 6D7C78D4283A7C2F006038D3;
+			packageReferences = (
+				6D7C78FB283A7C98006038D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 6D7C78DE283A7C2F006038D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6D7C78DC283A7C2F006038D3 /* ThymeTraque */,
+				6D7C78F1283A7C53006038D3 /* ThymeTraqueTests */,
 			);
 		};
 /* End PBXProject section */
@@ -127,6 +190,13 @@
 			files = (
 				6D7C78E8283A7C31006038D3 /* Preview Assets.xcassets in Resources */,
 				6D7C78E5283A7C31006038D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D7C78F0283A7C53006038D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +212,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6D7C78EE283A7C53006038D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D7C78F5283A7C53006038D3 /* ThymeTraqueTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D7C78F7283A7C53006038D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D7C78DC283A7C2F006038D3 /* ThymeTraque */;
+			targetProxy = 6D7C78F6283A7C53006038D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6D7C78E9283A7C31006038D3 /* Debug */ = {
@@ -317,6 +403,42 @@
 			};
 			name = Release;
 		};
+		6D7C78F9283A7C53006038D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M7Q8CPWGNR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.antonskripnik.ThymeTraqueTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThymeTraque.app/ThymeTraque";
+			};
+			name = Debug;
+		};
+		6D7C78FA283A7C53006038D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M7Q8CPWGNR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.antonskripnik.ThymeTraqueTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThymeTraque.app/ThymeTraque";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -338,7 +460,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6D7C78F8283A7C53006038D3 /* Build configuration list for PBXNativeTarget "ThymeTraqueTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D7C78F9283A7C53006038D3 /* Debug */,
+				6D7C78FA283A7C53006038D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D7C78FB283A7C98006038D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D7C78FC283A7C98006038D3 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D7C78FB283A7C98006038D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6D7C78D5283A7C2F006038D3 /* Project object */;
 }
