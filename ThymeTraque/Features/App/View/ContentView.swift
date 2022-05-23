@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    let store: AppStore
     let environment: AppEnvironment
     
     var body: some View {
         TabView {
-            TrackView()
+            TrackView(
+                store: store.trackStore,
+                environment: environment.trackEnvironment
+            )
             HistoryView()
         }
     }
@@ -20,6 +24,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(environment: .default)
+        ContentView(
+            store: AppStoreProducer.preview.produce(),
+            environment: .live
+        )
     }
 }

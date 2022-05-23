@@ -6,39 +6,49 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct TrackView: View {
-    @State private var editingText: Bool = false
-    @FocusState private var textFieldFocused: Bool
-    @State private var textFieldText: String = ""
+    let store: TrackStore
+    let environment: TrackEnvironment
     
     var body: some View {
-        VStack {
-            Spacer()
-            
+        WithViewStore(store) { viewStore in
             VStack {
-                Text("00:00")
-                    .font(.system(size: 70.0, weight: .ultraLight, design: .rounded))
+                Spacer()
                 
-                Button {
-                    print("Button tapped")
-                } label: {
-                    Image(systemName: "stop.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: .infinity)
+                VStack {
+                    let trackedIntervalString = environment.timeIntervalFormatter.string(from: viewStore.activityTimeInterval)
+                    
+                    Text(trackedIntervalString)
+                        .font(.system(size: 70.0, weight: .ultraLight, design: .rounded))
+                    
+                    Button {
+                        print("Button tapped")
+                    } label: {
+                        Image(systemName: viewStore.isTracking ? "stop.circle" : "play.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
-            }
-            .frame(width: 240.0)
-            
-            Spacer()
-            
-            TextField("Tap here to edit your activity description", text: $textFieldText)
+                .frame(width: 240.0)
+                
+                Spacer()
+                
+                TextField(
+                    "Tap here to add your activity description",
+                    text: viewStore.binding(
+                        get: \.activityDescription,
+                        send: { .activityDescriptionChanged($0) }
+                    )
+                )
                 .multilineTextAlignment(.center)
                 .font(.body)
                 .padding()
-            
-            Spacer()
+                
+                Spacer()
+            }
         }
         .tabItem(constructTabItemLabel)
     }
@@ -54,9 +64,16 @@ struct TrackView: View {
 struct TrackView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TrackView()
+            TrackView(
+                store: .preview,
+                environment: .preview
+            )
                 .preferredColorScheme(.light)
-            TrackView()
+            
+            TrackView(
+                store: .preview,
+                environment: .preview
+            )
                 .preferredColorScheme(.dark)
         }
     }

@@ -22,12 +22,7 @@ struct HistoryView: View {
         .init(description: "My activity 1", timeInterval: 4.33),
     ]
     
-    let formatter: DateComponentsFormatter = {
-        let f = DateComponentsFormatter()
-        f.allowedUnits = [.minute, .second]
-        f.zeroFormattingBehavior = .pad
-        return f
-    }()
+    let formatter: TimeIntervalFormatterProtocol = TimeIntervalFormatter()
     
     var body: some View {
         NavigationView {
@@ -36,7 +31,7 @@ struct HistoryView: View {
                     HStack {
                         Text(entry.description)
                         Spacer()
-                        Text(formatter.string(from: entry.timeInterval) ?? "Unknown")
+                        Text(formatter.string(from: entry.timeInterval))
                             .foregroundColor(.gray)
                     }
                 }

@@ -8,5 +8,11 @@
 import Foundation
 
 struct TrackEnvironment {
-    
+    let timeIntervalFormatter: TimeIntervalFormatterProtocol
+}
+
+extension TrackEnvironment {
+    static let preview = TrackEnvironment(
+        timeIntervalFormatter: TimeIntervalFormatter()
+    )
 }

@@ -14,8 +14,8 @@ struct AppEnvironment {
 }
 
 extension AppEnvironment {
-    static let `default` = AppEnvironment(
+    static let live = AppEnvironment(
         logger: ConsoleLogger(formatter: TaggedDetailLoggerEntryFormatter(tag: "APP")),
-        trackEnvironment: .init()
+        trackEnvironment: .init(timeIntervalFormatter: TimeIntervalFormatter())
     )
 }

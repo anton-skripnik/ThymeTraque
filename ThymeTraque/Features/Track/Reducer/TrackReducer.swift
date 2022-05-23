@@ -17,7 +17,11 @@ class TrackReducerProducer: ReducerProducer {
     
     func produce() -> TrackReducer {
         return TrackReducer { state, action, environment in
-            return .none
+            switch action {
+                case .activityDescriptionChanged(let updatedDescription):
+                    state.activityDescription = updatedDescription
+                    return .none
+            }
         }
     }
     

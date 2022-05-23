@@ -8,5 +8,5 @@
 import Foundation
 
 enum TrackAction: Equatable {
-    
+    case activityDescriptionChanged(String)
 }
