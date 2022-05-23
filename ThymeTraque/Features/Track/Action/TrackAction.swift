@@ -8,5 +8,7 @@
 import Foundation
 
 enum TrackAction: Equatable {
+    case toggleTracking
+    case trackingTick
     case activityDescriptionChanged(String)
 }

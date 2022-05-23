@@ -6,13 +6,27 @@
 //
 
 import Foundation
+import CombineSchedulers
 
 struct TrackEnvironment {
     let timeIntervalFormatter: TimeIntervalFormatterProtocol
+    let dateProvider: DateProviderProtocol
+    let timerTickInterval: TimeInterval
+    let scheduler: AnySchedulerOf<DispatchQueue>
 }
 
 extension TrackEnvironment {
+    static let live = TrackEnvironment(
+        timeIntervalFormatter: TimeIntervalFormatter(),
+        dateProvider: NowDateProvider(),
+        timerTickInterval: 1.0,
+        scheduler: .main
+    )
+    
     static let preview = TrackEnvironment(
-        timeIntervalFormatter: TimeIntervalFormatter()
+        timeIntervalFormatter: TimeIntervalFormatter(),
+        dateProvider: NowDateProvider(),
+        timerTickInterval: 1.0,
+        scheduler: .main
     )
 }

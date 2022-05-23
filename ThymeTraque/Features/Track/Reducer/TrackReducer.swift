@@ -17,7 +17,17 @@ class TrackReducerProducer: ReducerProducer {
     
     func produce() -> TrackReducer {
         return TrackReducer { state, action, environment in
-            switch action {
+            switch action { 
+                case .toggleTracking:
+                    if !state.isTracking {
+                        return Self.handleStartTracking(state: &state, action: action, environment: environment)
+                    } else {
+                        return Self.handleEndTracking(state: &state, action: action, environment: environment)
+                    }
+                    
+                case .trackingTick:
+                    return .none
+                    
                 case .activityDescriptionChanged(let updatedDescription):
                     state.activityDescription = updatedDescription
                     return .none
@@ -31,6 +41,26 @@ class TrackReducerProducer: ReducerProducer {
             action: /AppAction.track,
             environment: { $0.trackEnvironment }
         )
+    }
+    
+    private enum TrackingTickTimerId {}
+    
+    private static func handleStartTracking(state: inout TrackState, action: TrackAction, environment: TrackEnvironment) -> Effect<TrackAction, Never> {
+        state.trackingStartDate = environment.dateProvider.date
+                    
+        return Effect.timer(
+            id: TrackingTickTimerId.self,
+            every: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: environment.timerTickInterval),
+            on: environment.scheduler
+        ).map { _ in
+            return TrackAction.trackingTick
+        }
+    }
+    
+    private static func handleEndTracking(state: inout TrackState, action: TrackAction, environment: TrackEnvironment) -> Effect<TrackAction, Never> {
+        state.trackingStartDate = nil
+        
+        return Effect.cancel(id: TrackingTickTimerId.self)
     }
 }
 
