@@ -9,22 +9,25 @@ import Foundation
 import SwiftUI
 
 struct TrackState: Equatable {
-    var activityTimeInterval: TimeInterval
-    var isTracking: Bool
+    var trackingStartDate: Date?
+    var isTracking: Bool {
+        trackingStartDate != nil
+    }
     
+    var activityTimeIntervalString: String
     var activityDescription: String
 }
 
 extension TrackState {
     static let live = TrackState(
-        activityTimeInterval: 754,
-        isTracking: false,
+        trackingStartDate: .now,
+        activityTimeIntervalString: "12:34",
         activityDescription: ""
     )
     
     static let preview = TrackState(
-        activityTimeInterval: 754,
-        isTracking: true,
+        trackingStartDate: .now,
+        activityTimeIntervalString: "12:34",
         activityDescription: ""
     )
 }

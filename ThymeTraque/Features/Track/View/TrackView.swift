@@ -18,9 +18,7 @@ struct TrackView: View {
                 Spacer()
                 
                 VStack {
-                    let trackedIntervalString = environment.timeIntervalFormatter.string(from: viewStore.activityTimeInterval)
-                    
-                    Text(trackedIntervalString)
+                    Text(viewStore.activityTimeIntervalString)
                         .font(.system(size: 70.0, weight: .ultraLight, design: .rounded))
                     
                     Button {
