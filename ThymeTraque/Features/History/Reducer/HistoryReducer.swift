@@ -41,7 +41,19 @@ class HistoryReducerProducer: PullbackReducerProducer {
                         .receive(on: environment.scheduler)
                         .catchToEffect {
                             if case let .failure(error) = $0 {
-                                environment.logger.c("Error saving entry to persistence with description \(error)")
+                                environment.logger.c("Error saving entry to persistence \(error)")
+                            }
+                            
+                            return .refresh
+                        }
+                    
+                case .removeEntry(id: let id):
+                    return environment.persistence
+                        .removeEntry(with: id)
+                        .receive(on: environment.scheduler)
+                        .catchToEffect {
+                            if case let .failure(error) = $0 {
+                                environment.logger.c("Error removing entry with id \(id): \(error)")
                             }
                             
                             return .refresh

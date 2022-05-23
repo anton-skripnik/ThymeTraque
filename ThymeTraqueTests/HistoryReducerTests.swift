@@ -74,6 +74,24 @@ class HistoryReducerTests: XCTestCase {
         XCTAssertEqual(persistence.entries.first!.activityDescription, "Prepended activity")
         XCTAssertEqual(persistence.entries.first!.timeInterval, 0.1)
     }
+    
+    func test_historyReducer_onRemoveEntry_asksPersistenceToRemoveTheEntryAndInitiatesRefreshAction() {
+        let idToRemove = 3
+        
+        XCTAssertTrue(persistence.entries.contains(where: { $0.id == idToRemove }))
+        
+        store.send(.removeEntry(id: idToRemove))
+        
+        scheduler.advance()
+        
+        store.receive(.refresh)
+        store.receive(.receivedEntries(persistence.entries)) { [self] in
+            $0.entries = IdentifiedArrayOf(uniqueElements: persistence.entries, id: \.id)
+        }
+        
+        XCTAssertTrue(persistence.removeEntryCalled)
+        XCTAssertFalse(persistence.entries.contains(where: { $0.id == idToRemove }))
+    }
 }
 
 class FakeHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
@@ -100,7 +118,7 @@ class FakeHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
     }
     
     func removeEntry(with id: HistoryEntry.ID) -> Effect<Void, Error> {
-        prependNewEntryCalled = false
+        removeEntryCalled = true
         
         guard let idx = entries.firstIndex(where: { $0.id == id }) else {
             return .init(value: ())
