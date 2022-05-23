@@ -32,6 +32,7 @@ class HistoryReducerProducer: PullbackReducerProducer {
                         }
                     
                 case .receivedEntries(let entries):
+                    state.entries = IdentifiedArrayOf(uncheckedUniqueElements: entries, id: \.id)
                     return .none
             }
         }

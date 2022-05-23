@@ -21,8 +21,8 @@ class HistoryReducerTests: XCTestCase {
         self.persistence = FakeHistoryEntryPersistence()
     }
     
-    func test_historyReducer_onRefresh_retrievesEntriesFromPersistenceAndTriggersReceivedEntriesAction() {
-        var entries = Array<HistoryEntry>([
+    func test_historyReducer_onRefresh_retrievesEntriesFromPersistenceAndTriggersReceivedEntriesActionWhichUpdatesEntriesInState() {
+        let entries = Array<HistoryEntry>([
             HistoryEntry(id: 5, activityDescription: "activity 5", timeInterval: 0.33),
             HistoryEntry(id: 4, activityDescription: "activity 4", timeInterval: 1.33),
             HistoryEntry(id: 3, activityDescription: "activity 3", timeInterval: 2.33),
@@ -49,7 +49,9 @@ class HistoryReducerTests: XCTestCase {
         
         scheduler.advance()
         
-        store.receive(.receivedEntries(entries))
+        store.receive(.receivedEntries(entries)) {
+            $0.entries = IdentifiedArrayOf(uncheckedUniqueElements: entries, id: \.id)
+        }
         
         XCTAssertTrue(persistence.allEntriesCalled)
     }
