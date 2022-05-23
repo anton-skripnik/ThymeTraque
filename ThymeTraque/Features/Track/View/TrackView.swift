@@ -35,7 +35,7 @@ struct TrackView: View {
                 Spacer()
                 
                 TextField(
-                    "Tap here to add your activity description",
+                    "Tap here to add description",
                     text: viewStore.binding(
                         get: \.activityDescription,
                         send: { .activityDescriptionChanged($0) }

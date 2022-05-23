@@ -85,7 +85,13 @@ class TrackReducerProducer: PullbackReducerProducer {
         
         if let startDate = state.trackingStartDate {
             let timeInterval = environment.dateProvider.date.timeIntervalSince(startDate)
-            let activityDescription = state.activityDescription
+            let activityDescription = { () -> String in
+                if state.activityDescription.isEmpty {
+                    return "Untitled activity"
+                } else {
+                    return state.activityDescription
+                }
+            }()
             
             effectsToReturn.append(Effect(value: .persistActivity(description: activityDescription, timeInterval: timeInterval)))
         } else {
