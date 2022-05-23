@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HistoryEntry: Identifiable, Equatable {
+struct HistoryEntry: Codable, Identifiable, Equatable {
     var id: Int
     var activityDescription: String
     var timeInterval: TimeInterval
