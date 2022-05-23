@@ -15,5 +15,4 @@ extension AppEnvironment {
     static let `default` = AppEnvironment(
         logger: ConsoleLogger(formatter: TaggedDetailLoggerEntryFormatter(tag: "APP"))
     )
-    
 }
