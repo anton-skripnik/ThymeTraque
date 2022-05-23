@@ -33,7 +33,10 @@ struct HistoryView: View {
                                 }
                             }
                             .onDelete { indexes in
-                                print("Delete")
+                                for idx in indexes {
+                                    let id = viewStore.entries[idx].id
+                                    viewStore.send(.removeEntry(id: id))
+                                }
                             }
                         }
                         .listStyle(.plain)
