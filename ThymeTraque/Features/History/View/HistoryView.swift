@@ -7,19 +7,13 @@
 
 import SwiftUI
 
-struct HistoryEntry: Equatable, Identifiable {
-    let id: UUID = UUID()
-    var description: String
-    var timeInterval: TimeInterval
-}
-
 struct HistoryView: View {
     let entries: Array<HistoryEntry> = [
-        .init(description: "My activity 5", timeInterval: 0.33),
-        .init(description: "My activity 4", timeInterval: 1.33),
-        .init(description: "My activity 3", timeInterval: 2.33),
-        .init(description: "My activity 2", timeInterval: 3.33),
-        .init(description: "My activity 1", timeInterval: 4.33),
+        .init(id: 1, activityDescription: "My activity 5", timeInterval: 0.33),
+        .init(id: 2, activityDescription: "My activity 4", timeInterval: 1.33),
+        .init(id: 3, activityDescription: "My activity 3", timeInterval: 2.33),
+        .init(id: 4, activityDescription: "My activity 2", timeInterval: 3.33),
+        .init(id: 5, activityDescription: "My activity 1", timeInterval: 4.33),
     ]
     
     let formatter: TimeIntervalFormatterProtocol = TimeIntervalFormatter()
@@ -29,7 +23,7 @@ struct HistoryView: View {
             List {
                 ForEach(entries) { entry in
                     HStack {
-                        Text(entry.description)
+                        Text(entry.activityDescription)
                         Spacer()
                         Text(formatter.string(from: entry.timeInterval))
                             .foregroundColor(.gray)
