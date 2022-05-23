@@ -14,41 +14,42 @@ class HistoryReducerTests: XCTestCase {
     var persistence: FakeHistoryEntryPersistence!
     var environment: HistoryEnvironment!
     let scheduler = DispatchQueue.test
+    var store: TestStore<HistoryState, HistoryState, HistoryAction, HistoryAction, HistoryEnvironment>!
+    
+    let entries: Array<HistoryEntry> = [
+        HistoryEntry(id: 5, activityDescription: "activity 5", timeInterval: 0.33),
+        HistoryEntry(id: 4, activityDescription: "activity 4", timeInterval: 1.33),
+        HistoryEntry(id: 3, activityDescription: "activity 3", timeInterval: 2.33),
+        HistoryEntry(id: 2, activityDescription: "activity 2", timeInterval: 3.33),
+        HistoryEntry(id: 1, activityDescription: "activity 1", timeInterval: 4.33),
+    ]
     
     override func setUp() {
         super.setUp()
         
         self.persistence = FakeHistoryEntryPersistence()
+        self.persistence.entries = entries
+        
         self.environment = HistoryEnvironment(
             timeIntervalFormatter: TimeIntervalFormatter(),
             logger: MuteLogger(),
             persistence: persistence,
             scheduler: scheduler.eraseToAnyScheduler()
         )
+        
+        self.store = TestStore(
+            initialState: HistoryState(entries: .init()),
+            reducer: HistoryReducerProducer().produce(),
+            environment: self.environment
+        )
     }
     
     func test_historyReducer_onRefresh_retrievesEntriesFromPersistenceAndTriggersReceivedEntriesActionWhichUpdatesEntriesInState() {
-        let entries = Array<HistoryEntry>([
-            HistoryEntry(id: 5, activityDescription: "activity 5", timeInterval: 0.33),
-            HistoryEntry(id: 4, activityDescription: "activity 4", timeInterval: 1.33),
-            HistoryEntry(id: 3, activityDescription: "activity 3", timeInterval: 2.33),
-            HistoryEntry(id: 2, activityDescription: "activity 2", timeInterval: 3.33),
-            HistoryEntry(id: 1, activityDescription: "activity 1", timeInterval: 4.33),
-        ])
-        
-        persistence.entries = entries
-        
-        let store = TestStore(
-            initialState: HistoryState(entries: .init()),
-            reducer: HistoryReducerProducer().produce(),
-            environment: environment
-        )
-        
         store.send(.refresh)
         
         scheduler.advance()
         
-        store.receive(.receivedEntries(entries)) {
+        store.receive(.receivedEntries(entries)) { [self] in
             $0.entries = IdentifiedArrayOf(uncheckedUniqueElements: entries, id: \.id)
         }
         
@@ -56,22 +57,7 @@ class HistoryReducerTests: XCTestCase {
     }
     
     func test_historyReducer_onPrependEntry_asksPersistenceToPrependAndInitiatesRefreshAction() {
-        let entries = Array<HistoryEntry>([
-            HistoryEntry(id: 5, activityDescription: "activity 5", timeInterval: 0.33),
-            HistoryEntry(id: 4, activityDescription: "activity 4", timeInterval: 1.33),
-            HistoryEntry(id: 3, activityDescription: "activity 3", timeInterval: 2.33),
-            HistoryEntry(id: 2, activityDescription: "activity 2", timeInterval: 3.33),
-            HistoryEntry(id: 1, activityDescription: "activity 1", timeInterval: 4.33),
-        ])
-        
-        persistence.entries = entries
         persistence.prependedNewEntryID = 6
-        
-        let store = TestStore(
-            initialState: HistoryState(entries: .init()),
-            reducer: HistoryReducerProducer().produce(),
-            environment: environment
-        )
         
         store.send(.prepend(activityDescription: "Prepended activity", timeInterval: 0.1))
         
