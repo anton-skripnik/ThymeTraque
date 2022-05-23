@@ -44,6 +44,8 @@ struct HistoryView: View {
                 }
                 .navigationTitle("My activities")
             }
+            // https://stackoverflow.com/questions/65316497/swiftui-navigationview-navigationbartitle-layoutconstraints-issue
+            .navigationViewStyle(.stack)
             .onAppear {
                 viewStore.send(.refresh)
             }
