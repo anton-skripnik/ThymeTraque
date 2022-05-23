@@ -93,6 +93,8 @@ class TrackReducerProducer: PullbackReducerProducer {
         }
         
         state.trackingStartDate = nil
+        state.activityDescription = ""
+        state.activityTimeIntervalString = "00:00"
         
         return Effect.concatenate(effectsToReturn)
     }

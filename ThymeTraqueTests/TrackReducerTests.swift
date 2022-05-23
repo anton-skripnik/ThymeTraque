@@ -61,6 +61,8 @@ class TrackReducerTests: XCTestCase {
         
         store.send(.toggleTracking) {
             $0.trackingStartDate = nil
+            $0.activityDescription = ""
+            $0.activityTimeIntervalString = "00:00"
         }
         
         scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
