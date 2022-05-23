@@ -14,7 +14,26 @@ class HistoryReducerProducer: PullbackReducerProducer {
     typealias ReducerType = HistoryReducer
     func produce() -> ReducerType {
         return ReducerType { state, action, environment in
-            return .none
+            switch action {
+                case .refresh:
+                    let keptEntries = state.entries.elements
+                    
+                    return environment.persistence
+                        .allEntries()
+                        .receive(on: environment.scheduler)
+                        .catchToEffect {
+                            switch $0 {
+                                case .success(let newEntries):
+                                    return .receivedEntries(newEntries)
+                                case .failure(let error):
+                                    environment.logger.c("Error retrieving history entries \(error)")
+                                    return .receivedEntries(keptEntries)
+                            }
+                        }
+                    
+                case .receivedEntries(let entries):
+                    return .none
+            }
         }
     }
     

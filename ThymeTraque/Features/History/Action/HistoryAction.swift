@@ -8,5 +8,6 @@
 import Foundation
 
 enum HistoryAction: Equatable {
-    
+    case refresh
+    case receivedEntries(Array<HistoryEntry>)
 }

@@ -16,11 +16,9 @@ protocol HistoryEntryPersistenceProtocol {
 
 class JSONFileHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
     let jsonURL: URL
-    let logger: LoggerProtocol
     
-    init(jsonURL: URL, logger: LoggerProtocol) {
+    init(jsonURL: URL) {
         self.jsonURL = jsonURL
-        self.logger = logger
     }
     
     func allEntries() -> Effect<Array<HistoryEntry>, Swift.Error> {
@@ -29,7 +27,6 @@ class JSONFileHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
                 let entries = try readEntries()
                 completion(.success(entries))
             } catch {
-                logger.c("Error reading history entries \(error)")
                 completion(.failure(error))
             }
         }
@@ -52,7 +49,6 @@ class JSONFileHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
                 
                 completion(.success(()))
             } catch {
-                logger.c("Error preprending a new entry \(error)")
                 completion(.failure(error))
             }
         }
@@ -77,7 +73,6 @@ class JSONFileHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
                 
                 completion(.success(()))
             } catch {
-                logger.c("Error removing an entry with id \(id). Error \(error)")
                 completion(.failure(error))
             }
         }
