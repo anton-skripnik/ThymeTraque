@@ -8,5 +8,6 @@
 import Foundation
 
 enum AppAction: Equatable {
+    case history(HistoryAction)
     case track(TrackAction)
 }

@@ -33,6 +33,11 @@
 		6DB01D6E283B93DF005C9EE7 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D6D283B93DF005C9EE7 /* DateProvider.swift */; };
 		6DB01D79283BC542005C9EE7 /* HistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D78283BC542005C9EE7 /* HistoryEntry.swift */; };
 		6DB01D7D283BC6DB005C9EE7 /* HistoryEntryPresistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D7C283BC6DB005C9EE7 /* HistoryEntryPresistence.swift */; };
+		6DB01D84283BCF80005C9EE7 /* HistoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D83283BCF80005C9EE7 /* HistoryAction.swift */; };
+		6DB01D86283BCF9A005C9EE7 /* HistoryEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D85283BCF9A005C9EE7 /* HistoryEnvironment.swift */; };
+		6DB01D88283BCFA9005C9EE7 /* HistoryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D87283BCFA9005C9EE7 /* HistoryReducer.swift */; };
+		6DB01D8A283BCFF2005C9EE7 /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D89283BCFF2005C9EE7 /* HistoryState.swift */; };
+		6DB01D8C283BCFF9005C9EE7 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +79,11 @@
 		6DB01D6D283B93DF005C9EE7 /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		6DB01D78283BC542005C9EE7 /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
 		6DB01D7C283BC6DB005C9EE7 /* HistoryEntryPresistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryPresistence.swift; sourceTree = "<group>"; };
+		6DB01D83283BCF80005C9EE7 /* HistoryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryAction.swift; sourceTree = "<group>"; };
+		6DB01D85283BCF9A005C9EE7 /* HistoryEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEnvironment.swift; sourceTree = "<group>"; };
+		6DB01D87283BCFA9005C9EE7 /* HistoryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryReducer.swift; sourceTree = "<group>"; };
+		6DB01D89283BCFF2005C9EE7 /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
+		6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				6D7C7900283A88D0006038D3 /* App */,
-				6D7C7901283A88D7006038D3 /* Track */,
 				6D7C7902283A88DD006038D3 /* History */,
+				6D7C7901283A88D7006038D3 /* Track */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -183,6 +193,11 @@
 		6D7C7902283A88DD006038D3 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				6DB01D7E283BCF2B005C9EE7 /* Action */,
+				6DB01D82283BCF45005C9EE7 /* Environment */,
+				6DB01D7F283BCF30005C9EE7 /* Reducer */,
+				6DB01D80283BCF35005C9EE7 /* State */,
+				6DB01D81283BCF39005C9EE7 /* Store */,
 				6D7C7905283A8930006038D3 /* View */,
 			);
 			path = History;
@@ -369,6 +384,46 @@
 			path = HistoryEntryPersistence;
 			sourceTree = "<group>";
 		};
+		6DB01D7E283BCF2B005C9EE7 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				6DB01D83283BCF80005C9EE7 /* HistoryAction.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		6DB01D7F283BCF30005C9EE7 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				6DB01D87283BCFA9005C9EE7 /* HistoryReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		6DB01D80283BCF35005C9EE7 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				6DB01D89283BCFF2005C9EE7 /* HistoryState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		6DB01D81283BCF39005C9EE7 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		6DB01D82283BCF45005C9EE7 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				6DB01D85283BCF9A005C9EE7 /* HistoryEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,10 +533,13 @@
 				6D7C790D283AA817006038D3 /* Logger.swift in Sources */,
 				6DB01D79283BC542005C9EE7 /* HistoryEntry.swift in Sources */,
 				6D7C7917283B558C006038D3 /* AppAction.swift in Sources */,
+				6DB01D88283BCFA9005C9EE7 /* HistoryReducer.swift in Sources */,
 				6DB01D5E283B7DE5005C9EE7 /* TrackReducer.swift in Sources */,
 				6D7C78E3283A7C2F006038D3 /* ContentView.swift in Sources */,
 				6DB01D6E283B93DF005C9EE7 /* DateProvider.swift in Sources */,
+				6DB01D84283BCF80005C9EE7 /* HistoryAction.swift in Sources */,
 				6DB01D5C283B7DDF005C9EE7 /* TrackEnvironment.swift in Sources */,
+				6DB01D86283BCF9A005C9EE7 /* HistoryEnvironment.swift in Sources */,
 				6D7C7919283B55A2006038D3 /* AppState.swift in Sources */,
 				6DB01D69283B872A005C9EE7 /* TimeIntervalFormatter.swift in Sources */,
 				6DB01D51283B69F7005C9EE7 /* AppReducer.swift in Sources */,
@@ -492,8 +550,10 @@
 				6DB01D5A283B7DAB005C9EE7 /* TrackAction.swift in Sources */,
 				6DB01D54283B6EFD005C9EE7 /* ReducerProducer.swift in Sources */,
 				6D7C7907283A8944006038D3 /* TrackView.swift in Sources */,
+				6DB01D8C283BCFF9005C9EE7 /* HistoryStore.swift in Sources */,
 				6D7C78E1283A7C2F006038D3 /* ThymeTraqueApp.swift in Sources */,
 				6DB01D60283B7E16005C9EE7 /* TrackState.swift in Sources */,
+				6DB01D8A283BCFF2005C9EE7 /* HistoryState.swift in Sources */,
 				6DB01D66283B8558005C9EE7 /* TrackStore.swift in Sources */,
 				6D7C7910283AB0DC006038D3 /* AppEnvironment.swift in Sources */,
 			);

@@ -36,15 +36,16 @@ class AppStoreProducer: AppStoreProducerProtocol {
 
 extension AppStoreProducer {
     static let live = AppStoreProducer(
-        initialState: .init(trackState: .live),
+        initialState: .live,
         reducer: AppReducerProducer([
             TrackReducerProducer().erasePullbackToAnyProducer(),
+            HistoryReducerProducer().erasePullbackToAnyProducer(),
         ]).produce(),
         environment: .live
     )
     
     static let preview = AppStoreProducer(
-        initialState: .init(trackState: .preview),
+        initialState: .preivew,
         reducer: AppReducerProducer([]).produce(),
         environment: .live
     )
