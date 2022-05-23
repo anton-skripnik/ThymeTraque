@@ -20,13 +20,13 @@ struct TrackState: Equatable {
 
 extension TrackState {
     static let live = TrackState(
-        trackingStartDate: .now,
+        trackingStartDate: nil,
         activityTimeIntervalString: "12:34",
         activityDescription: ""
     )
     
     static let preview = TrackState(
-        trackingStartDate: .now,
+        trackingStartDate: nil,
         activityTimeIntervalString: "12:34",
         activityDescription: ""
     )

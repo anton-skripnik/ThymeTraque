@@ -22,7 +22,7 @@ struct TrackView: View {
                         .font(.system(size: 70.0, weight: .ultraLight, design: .rounded))
                     
                     Button {
-                        print("Button tapped")
+                        viewStore.send(.toggleTracking)
                     } label: {
                         Image(systemName: viewStore.isTracking ? "stop.circle" : "play.circle")
                             .resizable()

@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 typealias TrackReducer = Reducer<TrackState, TrackAction, TrackEnvironment>
 
-class TrackReducerProducer: ReducerProducer {
+class TrackReducerProducer: PullbackReducerProducer {
     typealias ReducerState = TrackState
     typealias ReducerAction = TrackAction
     typealias ReducerEnvironment = TrackEnvironment
@@ -43,7 +43,8 @@ class TrackReducerProducer: ReducerProducer {
         }
     }
     
-    func produce() -> AppReducer {
+    typealias PullbackReducerType = AppReducer
+    func pullback() -> PullbackReducerType {
         return self.produce().pullback(
             state: \.trackState,
             action: /AppAction.track,

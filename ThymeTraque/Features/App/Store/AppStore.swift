@@ -37,7 +37,9 @@ class AppStoreProducer: AppStoreProducerProtocol {
 extension AppStoreProducer {
     static let live = AppStoreProducer(
         initialState: .init(trackState: .live),
-        reducer: AppReducerProducer([]).produce(),
+        reducer: AppReducerProducer([
+            TrackReducerProducer().erasePullbackToAnyProducer(),
+        ]).produce(),
         environment: .live
     )
     

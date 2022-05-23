@@ -18,8 +18,24 @@ protocol ReducerProducer {
     func produce() -> ReducerType
 }
 
+protocol PullbackReducerProducer: ReducerProducer {
+    associatedtype PullbackReducerState
+    associatedtype PullbackReducerAction
+    associatedtype PullbackReducerEnvironment
+    
+    typealias PullbackReducerType = Reducer<PullbackReducerState, PullbackReducerAction, PullbackReducerEnvironment>
+    
+    func pullback() -> PullbackReducerType
+}
+
 extension ReducerProducer {
     func eraseToAnyProducer() -> AnyReducerProducer<ReducerState, ReducerAction, ReducerEnvironment> {
+        return AnyReducerProducer(self)
+    }
+}
+
+extension PullbackReducerProducer {
+    func erasePullbackToAnyProducer() -> AnyReducerProducer<PullbackReducerState, PullbackReducerAction, PullbackReducerEnvironment> {
         return AnyReducerProducer(self)
     }
 }
@@ -27,8 +43,16 @@ extension ReducerProducer {
 struct AnyReducerProducer<State, Action, Environment>: ReducerProducer {
     private let produceClosure: (() -> Reducer<State, Action, Environment>)
     
-    init<P: ReducerProducer>(_ wrapped: P) where P.ReducerState == State, P.ReducerAction == Action, P.ReducerEnvironment == Environment {
+    init<P: ReducerProducer>(_ wrapped: P)
+        where P.ReducerState == State, P.ReducerAction == Action, P.ReducerEnvironment == Environment {
+            
         self.produceClosure = wrapped.produce
+    }
+    
+    init<P: PullbackReducerProducer>(_ wrapped: P)
+        where P.PullbackReducerState == State, P.PullbackReducerAction == Action, P.PullbackReducerEnvironment == Environment {
+            
+        self.produceClosure = wrapped.pullback
     }
     
     func produce() -> Reducer<State, Action, Environment> {
