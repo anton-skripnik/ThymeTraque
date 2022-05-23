@@ -11,4 +11,5 @@ enum TrackAction: Equatable {
     case toggleTracking
     case trackingTick
     case activityDescriptionChanged(String)
+    case persistActivity(description: String, timeInterval: TimeInterval)
 }

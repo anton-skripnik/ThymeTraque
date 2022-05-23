@@ -39,6 +39,10 @@ class TrackReducerProducer: PullbackReducerProducer {
                 case .activityDescriptionChanged(let updatedDescription):
                     state.activityDescription = updatedDescription
                     return .none
+                    
+                case .persistActivity(description: _, timeInterval: _):
+                    // The app-level reducer will handle it.
+                    return .none
             }
         }
     }
@@ -54,7 +58,11 @@ class TrackReducerProducer: PullbackReducerProducer {
     
     private enum TrackingTickTimerId {}
     
-    private static func handleStartTracking(state: inout TrackState, action: TrackAction, environment: TrackEnvironment) -> Effect<TrackAction, Never> {
+    private static func handleStartTracking(
+        state: inout TrackState,
+        action: TrackAction,
+        environment: TrackEnvironment
+    ) -> Effect<TrackAction, Never> {
         state.trackingStartDate = environment.dateProvider.date
                     
         return Effect.timer(
@@ -66,10 +74,27 @@ class TrackReducerProducer: PullbackReducerProducer {
         }
     }
     
-    private static func handleEndTracking(state: inout TrackState, action: TrackAction, environment: TrackEnvironment) -> Effect<TrackAction, Never> {
+    private static func handleEndTracking(
+        state: inout TrackState,
+        action: TrackAction,
+        environment: TrackEnvironment
+    ) -> Effect<TrackAction, Never> {
+        var effectsToReturn: Array<Effect<TrackAction, Never>> = [
+            .cancel(id: TrackingTickTimerId.self)
+        ]
+        
+        if let startDate = state.trackingStartDate {
+            let timeInterval = environment.dateProvider.date.timeIntervalSince(startDate)
+            let activityDescription = state.activityDescription
+            
+            effectsToReturn.append(Effect(value: .persistActivity(description: activityDescription, timeInterval: timeInterval)))
+        } else {
+            environment.logger.c("No start date at when tracking completes. This is not how it's supposed to be.")
+        }
+        
         state.trackingStartDate = nil
         
-        return Effect.cancel(id: TrackingTickTimerId.self)
+        return Effect.concatenate(effectsToReturn)
     }
 }
 
