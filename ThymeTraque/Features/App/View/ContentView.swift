@@ -17,7 +17,10 @@ struct ContentView: View {
                 store: store.trackStore,
                 environment: environment.trackEnvironment
             )
-            HistoryView()
+            HistoryView(
+                store: store.historyStore,
+                environment: environment.historyEnvironment
+            )
         }
     }
 }

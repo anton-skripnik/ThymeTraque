@@ -20,5 +20,6 @@ extension AppStore {
 }
 
 extension TrackStore {
+    static let live = AppStoreProducer.live.produce().trackStore
     static let preview = AppStoreProducer.preview.produce().trackStore
 }

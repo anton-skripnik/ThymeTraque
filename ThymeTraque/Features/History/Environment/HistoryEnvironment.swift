@@ -8,11 +8,15 @@
 import Foundation
 
 struct HistoryEnvironment {
-    
+    let timeIntervalFormatter: TimeIntervalFormatterProtocol
 }
 
 
 extension HistoryEnvironment {
-    static let live = HistoryEnvironment()
-    static let preview = HistoryEnvironment()
+    static let live = HistoryEnvironment(
+        timeIntervalFormatter: TimeIntervalFormatter()
+    )
+    static let preview = HistoryEnvironment(
+        timeIntervalFormatter: TimeIntervalFormatter()
+    )
 }
