@@ -34,6 +34,18 @@ class HistoryReducerProducer: PullbackReducerProducer {
                 case .receivedEntries(let entries):
                     state.entries = IdentifiedArrayOf(uncheckedUniqueElements: entries, id: \.id)
                     return .none
+                    
+                case .prepend(activityDescription: let description, timeInterval: let timeInterval):
+                    return environment.persistence
+                        .prependNewEntry(with: description, and: timeInterval)
+                        .receive(on: environment.scheduler)
+                        .catchToEffect {
+                            if case let .failure(error) = $0 {
+                                environment.logger.c("Error saving entry to persistence with description \(error)")
+                            }
+                            
+                            return .refresh
+                        }
             }
         }
     }

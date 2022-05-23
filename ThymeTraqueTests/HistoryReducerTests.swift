@@ -12,13 +12,19 @@ import ComposableArchitecture
 
 class HistoryReducerTests: XCTestCase {
     var persistence: FakeHistoryEntryPersistence!
-    var store: TestStore<HistoryState, HistoryState, HistoryAction, HistoryAction, HistoryEnvironment>!
+    var environment: HistoryEnvironment!
     let scheduler = DispatchQueue.test
     
     override func setUp() {
         super.setUp()
         
         self.persistence = FakeHistoryEntryPersistence()
+        self.environment = HistoryEnvironment(
+            timeIntervalFormatter: TimeIntervalFormatter(),
+            logger: MuteLogger(),
+            persistence: persistence,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
     }
     
     func test_historyReducer_onRefresh_retrievesEntriesFromPersistenceAndTriggersReceivedEntriesActionWhichUpdatesEntriesInState() {
@@ -31,13 +37,6 @@ class HistoryReducerTests: XCTestCase {
         ])
         
         persistence.entries = entries
-        
-        let environment = HistoryEnvironment(
-            timeIntervalFormatter: TimeIntervalFormatter(),
-            logger: MuteLogger(),
-            persistence: persistence,
-            scheduler: scheduler.eraseToAnyScheduler()
-        )
         
         let store = TestStore(
             initialState: HistoryState(entries: .init()),
@@ -55,12 +54,47 @@ class HistoryReducerTests: XCTestCase {
         
         XCTAssertTrue(persistence.allEntriesCalled)
     }
+    
+    func test_historyReducer_onPrependEntry_asksPersistenceToPrependAndInitiatesRefreshAction() {
+        let entries = Array<HistoryEntry>([
+            HistoryEntry(id: 5, activityDescription: "activity 5", timeInterval: 0.33),
+            HistoryEntry(id: 4, activityDescription: "activity 4", timeInterval: 1.33),
+            HistoryEntry(id: 3, activityDescription: "activity 3", timeInterval: 2.33),
+            HistoryEntry(id: 2, activityDescription: "activity 2", timeInterval: 3.33),
+            HistoryEntry(id: 1, activityDescription: "activity 1", timeInterval: 4.33),
+        ])
+        
+        persistence.entries = entries
+        persistence.prependedNewEntryID = 6
+        
+        let store = TestStore(
+            initialState: HistoryState(entries: .init()),
+            reducer: HistoryReducerProducer().produce(),
+            environment: environment
+        )
+        
+        store.send(.prepend(activityDescription: "Prepended activity", timeInterval: 0.1))
+        
+        scheduler.advance()
+        
+        store.receive(.refresh)
+        
+        store.receive(.receivedEntries(persistence.entries)) { [self] in
+            $0.entries = IdentifiedArrayOf(uniqueElements: persistence.entries, id: \.id)
+        }
+        
+        XCTAssertTrue(persistence.prependNewEntryCalled)
+        XCTAssertEqual(persistence.entries.first!.id, persistence.prependedNewEntryID)
+        XCTAssertEqual(persistence.entries.first!.activityDescription, "Prepended activity")
+        XCTAssertEqual(persistence.entries.first!.timeInterval, 0.1)
+    }
 }
 
 class FakeHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
     var entries: Array<HistoryEntry> = []
     var allEntriesCalled = false
     
+    var prependedNewEntryID: Int = 1234
     var prependNewEntryCalled = false
     
     var removeEntryCalled = false
@@ -74,7 +108,7 @@ class FakeHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
     func prependNewEntry(with activityDescription: String, and timeInterval: TimeInterval) -> Effect<Void, Error> {
         prependNewEntryCalled = true
         
-        entries.insert(HistoryEntry(id: 1234, activityDescription: activityDescription, timeInterval: timeInterval), at: 0)
+        entries.insert(HistoryEntry(id: prependedNewEntryID, activityDescription: activityDescription, timeInterval: timeInterval), at: 0)
         
         return .init(value: ())
     }
