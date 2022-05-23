@@ -9,7 +9,7 @@ iOS
 ## Running the app
 
 - Open `ThymeTraque.xcodeproj` in Xcode.
-- Choose `ThymeTraque` schem and a suitable destination.
+- Choose `ThymeTraque` scheme and a suitable destination.
 - Click `Run` or `Cmd+R`.
 
 ## Running the tests
