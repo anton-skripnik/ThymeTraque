@@ -11,7 +11,7 @@ import SwiftUI
 struct ThymeTraqueApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(environment: .default)
         }
     }
 }
