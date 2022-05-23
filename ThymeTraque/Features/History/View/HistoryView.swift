@@ -13,23 +13,36 @@ struct HistoryView: View {
     let environment: HistoryEnvironment
     
     var body: some View {
-        NavigationView {
-            WithViewStore(store) { viewStore in
-                List {
-                    ForEach(viewStore.entries) { entry in
-                        HStack {
-                            Text(entry.activityDescription)
-                            Spacer()
-                            Text(environment.timeIntervalFormatter.string(from: entry.timeInterval))
-                                .foregroundColor(.gray)
+        WithViewStore(store) { viewStore in
+            NavigationView {
+                Group {
+                    if viewStore.entries.isEmpty {
+                        Text("No entries yet. Start by tapping the big button on the Track screen.")
+                            .padding()
+                            .font(.body)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                    } else {
+                        List {
+                            ForEach(viewStore.entries) { entry in
+                                HStack {
+                                    Text(entry.activityDescription)
+                                    Spacer()
+                                    Text(environment.timeIntervalFormatter.string(from: entry.timeInterval))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .onDelete { indexes in
+                                print("Delete")
+                            }
                         }
-                    }
-                    .onDelete { indexes in
-                        print("Delete")
+                        .listStyle(.plain)
                     }
                 }
                 .navigationTitle("My activities")
-                .listStyle(.plain)
+            }
+            .onAppear {
+                viewStore.send(.refresh)
             }
         }
         .tabItem(constructTabItemLabel)

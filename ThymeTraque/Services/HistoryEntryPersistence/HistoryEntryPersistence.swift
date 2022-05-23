@@ -79,6 +79,14 @@ class JSONFileHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
     }
     
     private func readEntries() throws -> Array<HistoryEntry> {
+        guard FileManager.default.fileExists(atPath: jsonURL.path) else {
+            // Yes, Apple suggests not to check if file exists and instead handle the error potentially
+            // thrown by the operation. But for the clarity's sake checking for the json existance
+            // seems a better trade-off, as opposed to parsing an NSError with obscure domain & code
+            // out of the Swift Error.
+            return []
+        }
+        
         let jsonData = try Data(contentsOf: jsonURL)
         return try JSONDecoder().decode(Array<HistoryEntry>.self, from: jsonData)
     }
