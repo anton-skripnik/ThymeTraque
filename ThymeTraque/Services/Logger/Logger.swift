@@ -33,6 +33,16 @@ extension LoggerProtocol {
     }
 }
 
+class MuteLogger: LoggerProtocol {
+    var formatter: LoggerEntryFormatter
+    
+    init(formatter: LoggerEntryFormatter = TaggedDetailLoggerEntryFormatter()) {
+        self.formatter = formatter
+    }
+    
+    func log(message: String) {}
+}
+
 class ConsoleLogger: LoggerProtocol {
     let formatter: LoggerEntryFormatter
     

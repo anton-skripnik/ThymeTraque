@@ -13,6 +13,7 @@ struct TrackEnvironment {
     let dateProvider: DateProviderProtocol
     let timerTickInterval: TimeInterval
     let scheduler: AnySchedulerOf<DispatchQueue>
+    let logger: LoggerProtocol
 }
 
 extension TrackEnvironment {
@@ -20,13 +21,15 @@ extension TrackEnvironment {
         timeIntervalFormatter: TimeIntervalFormatter(),
         dateProvider: NowDateProvider(),
         timerTickInterval: 1.0,
-        scheduler: .main
+        scheduler: .main,
+        logger: ConsoleLogger(formatter: TaggedDetailLoggerEntryFormatter(tag: "Track"))
     )
     
     static let preview = TrackEnvironment(
         timeIntervalFormatter: TimeIntervalFormatter(),
         dateProvider: NowDateProvider(),
         timerTickInterval: 1.0,
-        scheduler: .main
+        scheduler: .main,
+        logger: ConsoleLogger(formatter: TaggedDetailLoggerEntryFormatter(tag: "Track"))
     )
 }

@@ -26,6 +26,14 @@ class TrackReducerProducer: ReducerProducer {
                     }
                     
                 case .trackingTick:
+                    guard let startDate = state.trackingStartDate else {
+                        environment.logger.c("Tracking tick action received but trackingStartDate is nil")
+                        return .none
+                    }
+                    
+                    let interval = environment.dateProvider.date.timeIntervalSince(startDate)
+                    state.activityTimeIntervalString = environment.timeIntervalFormatter.string(from: interval)
+                    
                     return .none
                     
                 case .activityDescriptionChanged(let updatedDescription):

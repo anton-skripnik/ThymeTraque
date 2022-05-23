@@ -32,7 +32,8 @@ class TrackReducerTests: XCTestCase {
                 timeIntervalFormatter: TimeIntervalFormatter(),
                 dateProvider: trackingSetDateProvider,
                 timerTickInterval: trackingTimerTickInterval,
-                scheduler: scheduler.eraseToAnyScheduler()
+                scheduler: scheduler.eraseToAnyScheduler(),
+                logger: MuteLogger()
             )
         )
     }
@@ -50,7 +51,9 @@ class TrackReducerTests: XCTestCase {
         
         scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
         
-        store.receive(.trackingTick)
+        store.receive(.trackingTick) {
+            $0.activityTimeIntervalString = "00:00"
+        }
         
         scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
         
@@ -61,5 +64,19 @@ class TrackReducerTests: XCTestCase {
         }
         
         scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
+    }
+    
+    func test_trackReducer_onTrackingTick_activityTimeIntervalStringUpdates() {
+        store.send(.toggleTracking) { [self] in
+            $0.trackingStartDate = trackingSetDateProvider.date
+        }
+        
+        let tickDate = trackingSetDateProvider.date.addingTimeInterval(10)
+        trackingSetDateProvider.date = tickDate
+        
+        store.send(.trackingTick) {
+            $0.activityTimeIntervalString = "00:10"
+        }
+        
     }
 }
