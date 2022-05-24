@@ -13,14 +13,30 @@ struct TrackView: View {
     let environment: TrackEnvironment
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @FocusState private var textFieldFocused: Bool
     
     var body: some View {
-        Group {
-            if verticalSizeClass == .regular {
-                RegularVerticalTrackViewLayout(store: store, environment: environment)
-            } else {
-                CompactVerticalTrackViewLayout(store: store, environment: environment)
+        WithViewStore(store) { viewStore in
+            Group {
+                if verticalSizeClass == .regular {
+                    RegularVerticalTrackViewLayout(
+                        store: store,
+                        environment: environment,
+                        textFieldFocused: $textFieldFocused
+                    )
+                } else {
+                    CompactVerticalTrackViewLayout(
+                        store: store,
+                        environment: environment,
+                        textFieldFocused: $textFieldFocused
+                    )
+                }
             }
+            .synchronize(
+                $textFieldFocused,
+                viewStore.binding(get: \.activityDescriptionTextFieldFocused,
+                                  send: { TrackAction.activityDescriptionTextFieldFocused($0) })
+            )
         }
         .tabItem(constructTabItemLabel)
     }
@@ -37,7 +53,7 @@ struct RegularVerticalTrackViewLayout: View {
     let store: TrackStore
     let environment: TrackEnvironment
     
-    @FocusState var textFieldFocused: Bool
+    var textFieldFocused: FocusState<Bool>.Binding
     
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -68,18 +84,13 @@ struct RegularVerticalTrackViewLayout: View {
                         send: { .activityDescriptionChanged($0) }
                     )
                 )
-                .focused($textFieldFocused)
+                .focused(textFieldFocused)
                 .multilineTextAlignment(.center)
                 .font(.body)
                 .padding()
                 
                 Spacer()
             }
-            .synchronize(
-                $textFieldFocused,
-                viewStore.binding(get: \.activityDescriptionTextFieldFocused,
-                                  send: { TrackAction.activityDescriptionTextFieldFocused($0) })
-            )
         }
     }
 }
@@ -89,7 +100,7 @@ struct CompactVerticalTrackViewLayout: View {
     let store: TrackStore
     let environment: TrackEnvironment
     
-    @FocusState var textFieldFocused: Bool
+    var textFieldFocused: FocusState<Bool>.Binding
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -118,17 +129,13 @@ struct CompactVerticalTrackViewLayout: View {
                         send: { .activityDescriptionChanged($0) }
                     )
                 )
+                .focused(textFieldFocused)
                 .multilineTextAlignment(.center)
                 .font(.body)
                 .padding()
                 
                 Spacer()
             }
-            .synchronize(
-                $textFieldFocused,
-                viewStore.binding(get: \.activityDescriptionTextFieldFocused,
-                                  send: { TrackAction.activityDescriptionTextFieldFocused($0) })
-            )
         }
     }
     
