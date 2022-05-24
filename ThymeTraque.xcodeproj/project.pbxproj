@@ -40,6 +40,7 @@
 		6DB01D8C283BCFF9005C9EE7 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */; };
 		6DB01D8E283BDB7A005C9EE7 /* HistoryReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */; };
 		6DB01D90283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */; };
+		6DB01D93283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryReducerTests.swift; sourceTree = "<group>"; };
 		6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistHistoryEntryReducer.swift; sourceTree = "<group>"; };
+		6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryPersistenceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */,
 				6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */,
 				6DB01D6A283B9174005C9EE7 /* TrackReducerTests.swift */,
+				6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift */,
 			);
 			path = ThymeTraqueTests;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DB01D6B283B9174005C9EE7 /* TrackReducerTests.swift in Sources */,
+				6DB01D93283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift in Sources */,
 				6DB01D8E283BDB7A005C9EE7 /* HistoryReducerTests.swift in Sources */,
 				6D7C78F5283A7C53006038D3 /* ThymeTraqueTests.swift in Sources */,
 			);

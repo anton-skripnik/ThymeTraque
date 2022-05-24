@@ -17,14 +17,20 @@ struct HistoryEnvironment {
 
 
 extension HistoryEnvironment {
-    private static let persistence = JSONFileHistoryEntryPersistence(
+    private static let persistence = SQLiteFileHistoryEntryPersistence(fileURL: try! FileManager.default.url(
+        for: .documentDirectory,
+        in: .userDomainMask,
+        appropriateFor: nil,
+        create: true
+    ).appendingPathComponent("history.entry.persistence.sqlite"))
+    /*JSONFileHistoryEntryPersistence(
         jsonURL: try! FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
         ).appendingPathComponent("history.entry.persistence.json")
-    )
+    )*/
     
     private static let logger = ConsoleLogger(formatter: TaggedDetailLoggerEntryFormatter(tag: "History"))
     
