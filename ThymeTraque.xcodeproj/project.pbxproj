@@ -11,7 +11,6 @@
 		6D7C78E3283A7C2F006038D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C78E2283A7C2F006038D3 /* ContentView.swift */; };
 		6D7C78E5283A7C31006038D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C78E4283A7C31006038D3 /* Assets.xcassets */; };
 		6D7C78E8283A7C31006038D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7C78E7283A7C31006038D3 /* Preview Assets.xcassets */; };
-		6D7C78F5283A7C53006038D3 /* ThymeTraqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */; };
 		6D7C78FD283A7C98006038D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7C78FC283A7C98006038D3 /* ComposableArchitecture */; };
 		6D7C7907283A8944006038D3 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C7906283A8944006038D3 /* TrackView.swift */; };
 		6D7C7909283A8955006038D3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C7908283A8955006038D3 /* HistoryView.swift */; };
@@ -40,11 +39,20 @@
 		6DB01D8C283BCFF9005C9EE7 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */; };
 		6DB01D8E283BDB7A005C9EE7 /* HistoryReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */; };
 		6DB01D90283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */; };
-		6DB01D93283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift */; };
+		6DB01D95283CF404005C9EE7 /* JSONFileHistoryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */; };
+		6DB01D97283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */; };
+		6DB01DA6283CFE0E005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		6D7C78F6283A7C53006038D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D7C78D5283A7C2F006038D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D7C78DC283A7C2F006038D3;
+			remoteInfo = ThymeTraque;
+		};
+		6DB01DA1283CFE08005C9EE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6D7C78D5283A7C2F006038D3 /* Project object */;
 			proxyType = 1;
@@ -60,7 +68,6 @@
 		6D7C78E4283A7C31006038D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D7C78E7283A7C31006038D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThymeTraqueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThymeTraqueTests.swift; sourceTree = "<group>"; };
 		6D7C78FE283A7CE9006038D3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6D7C7906283A8944006038D3 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		6D7C7908283A8955006038D3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -89,7 +96,10 @@
 		6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryReducerTests.swift; sourceTree = "<group>"; };
 		6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistHistoryEntryReducer.swift; sourceTree = "<group>"; };
-		6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryPersistenceTests.swift; sourceTree = "<group>"; };
+		6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryPersistencePerformanceTests.swift; sourceTree = "<group>"; };
+		6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFileHistoryPersistence.swift; sourceTree = "<group>"; };
+		6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteFileHistoryPersitence.swift; sourceTree = "<group>"; };
+		6DB01D9D283CFE08005C9EE7 /* ThymeTraquePerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThymeTraquePerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DB01D9A283CFE08005C9EE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,6 +134,7 @@
 				6D7C78FE283A7CE9006038D3 /* README.md */,
 				6D7C78DF283A7C2F006038D3 /* ThymeTraque */,
 				6D7C78F3283A7C53006038D3 /* ThymeTraqueTests */,
+				6DB01D9E283CFE08005C9EE7 /* ThymeTraquePerformanceTests */,
 				6D7C78DE283A7C2F006038D3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +144,7 @@
 			children = (
 				6D7C78DD283A7C2F006038D3 /* ThymeTraque.app */,
 				6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */,
+				6DB01D9D283CFE08005C9EE7 /* ThymeTraquePerformanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,10 +173,8 @@
 		6D7C78F3283A7C53006038D3 /* ThymeTraqueTests */ = {
 			isa = PBXGroup;
 			children = (
-				6D7C78F4283A7C53006038D3 /* ThymeTraqueTests.swift */,
 				6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */,
 				6DB01D6A283B9174005C9EE7 /* TrackReducerTests.swift */,
-				6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift */,
 			);
 			path = ThymeTraqueTests;
 			sourceTree = "<group>";
@@ -389,6 +406,8 @@
 			isa = PBXGroup;
 			children = (
 				6DB01D7C283BC6DB005C9EE7 /* HistoryEntryPersistence.swift */,
+				6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */,
+				6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */,
 			);
 			path = HistoryEntryPersistence;
 			sourceTree = "<group>";
@@ -433,6 +452,14 @@
 			path = Environment;
 			sourceTree = "<group>";
 		};
+		6DB01D9E283CFE08005C9EE7 /* ThymeTraquePerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift */,
+			);
+			path = ThymeTraquePerformanceTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -474,6 +501,24 @@
 			productReference = 6D7C78F2283A7C53006038D3 /* ThymeTraqueTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		6DB01D9C283CFE08005C9EE7 /* ThymeTraquePerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DB01DA3283CFE08005C9EE7 /* Build configuration list for PBXNativeTarget "ThymeTraquePerformanceTests" */;
+			buildPhases = (
+				6DB01D99283CFE08005C9EE7 /* Sources */,
+				6DB01D9A283CFE08005C9EE7 /* Frameworks */,
+				6DB01D9B283CFE08005C9EE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DB01DA2283CFE08005C9EE7 /* PBXTargetDependency */,
+			);
+			name = ThymeTraquePerformanceTests;
+			productName = ThymeTraquePerformanceTests;
+			productReference = 6DB01D9D283CFE08005C9EE7 /* ThymeTraquePerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -481,7 +526,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					6D7C78DC283A7C2F006038D3 = {
@@ -489,6 +534,10 @@
 					};
 					6D7C78F1283A7C53006038D3 = {
 						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 6D7C78DC283A7C2F006038D3;
+					};
+					6DB01D9C283CFE08005C9EE7 = {
+						CreatedOnToolsVersion = 13.4;
 						TestTargetID = 6D7C78DC283A7C2F006038D3;
 					};
 				};
@@ -511,6 +560,7 @@
 			targets = (
 				6D7C78DC283A7C2F006038D3 /* ThymeTraque */,
 				6D7C78F1283A7C53006038D3 /* ThymeTraqueTests */,
+				6DB01D9C283CFE08005C9EE7 /* ThymeTraquePerformanceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -532,6 +582,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DB01D9B283CFE08005C9EE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -544,9 +601,11 @@
 				6D7C7917283B558C006038D3 /* AppAction.swift in Sources */,
 				6DB01D88283BCFA9005C9EE7 /* HistoryReducer.swift in Sources */,
 				6DB01D5E283B7DE5005C9EE7 /* TrackReducer.swift in Sources */,
+				6DB01D97283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift in Sources */,
 				6D7C78E3283A7C2F006038D3 /* ContentView.swift in Sources */,
 				6DB01D6E283B93DF005C9EE7 /* DateProvider.swift in Sources */,
 				6DB01D84283BCF80005C9EE7 /* HistoryAction.swift in Sources */,
+				6DB01D95283CF404005C9EE7 /* JSONFileHistoryPersistence.swift in Sources */,
 				6DB01D5C283B7DDF005C9EE7 /* TrackEnvironment.swift in Sources */,
 				6DB01D86283BCF9A005C9EE7 /* HistoryEnvironment.swift in Sources */,
 				6D7C7919283B55A2006038D3 /* AppState.swift in Sources */,
@@ -574,9 +633,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DB01D6B283B9174005C9EE7 /* TrackReducerTests.swift in Sources */,
-				6DB01D93283C15E6005C9EE7 /* HistoryEntryPersistenceTests.swift in Sources */,
 				6DB01D8E283BDB7A005C9EE7 /* HistoryReducerTests.swift in Sources */,
-				6D7C78F5283A7C53006038D3 /* ThymeTraqueTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DB01D99283CFE08005C9EE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DB01DA6283CFE0E005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +652,11 @@
 			isa = PBXTargetDependency;
 			target = 6D7C78DC283A7C2F006038D3 /* ThymeTraque */;
 			targetProxy = 6D7C78F6283A7C53006038D3 /* PBXContainerItemProxy */;
+		};
+		6DB01DA2283CFE08005C9EE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D7C78DC283A7C2F006038D3 /* ThymeTraque */;
+			targetProxy = 6DB01DA1283CFE08005C9EE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -799,6 +869,44 @@
 			};
 			name = Release;
 		};
+		6DB01DA4283CFE08005C9EE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M7Q8CPWGNR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.antonskripnik.ThymeTraquePerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThymeTraque.app/ThymeTraque";
+			};
+			name = Debug;
+		};
+		6DB01DA5283CFE08005C9EE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M7Q8CPWGNR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.antonskripnik.ThymeTraquePerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThymeTraque.app/ThymeTraque";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -825,6 +933,15 @@
 			buildConfigurations = (
 				6D7C78F9283A7C53006038D3 /* Debug */,
 				6D7C78FA283A7C53006038D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DB01DA3283CFE08005C9EE7 /* Build configuration list for PBXNativeTarget "ThymeTraquePerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DB01DA4283CFE08005C9EE7 /* Debug */,
+				6DB01DA5283CFE08005C9EE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
