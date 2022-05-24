@@ -87,7 +87,7 @@ struct CompactVerticalTrackViewLayout: View {
                 
                 HStack {
                     Text(viewStore.activityTimeIntervalString)
-                        .font(.system(size: 70.0, weight: .ultraLight, design: .rounded))
+                        .font(.system(size: 50.0, weight: .ultraLight, design: .rounded))
                         .padding()
                     
                     Button {
@@ -97,10 +97,8 @@ struct CompactVerticalTrackViewLayout: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }
-                    .frame(height: 100.0)
+                    .frame(height: 50.0)
                 }
-                
-                Spacer()
                 
                 TextField(
                     "Tap here to add description",
