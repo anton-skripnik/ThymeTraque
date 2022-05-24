@@ -12,4 +12,5 @@ enum TrackAction: Equatable {
     case trackingTick
     case activityDescriptionChanged(String)
     case persistActivity(description: String, timeInterval: TimeInterval)
+    case activityDescriptionTextFieldFocused(Bool)
 }

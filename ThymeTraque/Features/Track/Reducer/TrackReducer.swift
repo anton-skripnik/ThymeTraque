@@ -40,9 +40,14 @@ class TrackReducerProducer: PullbackReducerProducer {
                     state.activityDescription = updatedDescription
                     return .none
                     
+                case .activityDescriptionTextFieldFocused(let focused):
+                    state.activityDescriptionTextFieldFocused = focused
+                    return .none
+                    
                 case .persistActivity(description: _, timeInterval: _):
                     // The app-level reducer will handle it.
                     return .none
+                    
             }
         }
     }
@@ -107,6 +112,9 @@ class TrackReducerProducer: PullbackReducerProducer {
         state.trackingStartDate = nil
         state.activityDescription = ""
         state.activityTimeIntervalString = "00:00"
+        
+        // Remove focus from the description text field when user stops tracking.
+        state.activityDescriptionTextFieldFocused = false
         
         return Effect.concatenate(effectsToReturn)
     }

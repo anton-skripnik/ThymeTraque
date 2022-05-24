@@ -37,6 +37,8 @@ struct RegularVerticalTrackViewLayout: View {
     let store: TrackStore
     let environment: TrackEnvironment
     
+    @FocusState var textFieldFocused: Bool
+    
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
@@ -66,19 +68,28 @@ struct RegularVerticalTrackViewLayout: View {
                         send: { .activityDescriptionChanged($0) }
                     )
                 )
+                .focused($textFieldFocused)
                 .multilineTextAlignment(.center)
                 .font(.body)
                 .padding()
                 
                 Spacer()
             }
+            .synchronize(
+                $textFieldFocused,
+                viewStore.binding(get: \.activityDescriptionTextFieldFocused,
+                                  send: { TrackAction.activityDescriptionTextFieldFocused($0) })
+            )
         }
     }
 }
 
+
 struct CompactVerticalTrackViewLayout: View {
     let store: TrackStore
     let environment: TrackEnvironment
+    
+    @FocusState var textFieldFocused: Bool
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -113,9 +124,26 @@ struct CompactVerticalTrackViewLayout: View {
                 
                 Spacer()
             }
+            .synchronize(
+                $textFieldFocused,
+                viewStore.binding(get: \.activityDescriptionTextFieldFocused,
+                                  send: { TrackAction.activityDescriptionTextFieldFocused($0) })
+            )
         }
     }
     
+}
+
+extension View {
+    func synchronize<Value: Equatable>(
+        _ first: FocusState<Value>.Binding,
+        _ second: Binding<Value>
+    ) -> some View {
+        self
+            .onChange(of: first.wrappedValue, perform: { second.wrappedValue = $0 })
+            .onChange(of: second.wrappedValue, perform: { first.wrappedValue = $0 })
+        
+    }
 }
 
 struct TrackView_Previews: PreviewProvider {

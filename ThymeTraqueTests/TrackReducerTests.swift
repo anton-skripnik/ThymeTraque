@@ -25,7 +25,8 @@ class TrackReducerTests: XCTestCase {
             initialState: TrackState(
                 trackingStartDate: nil,
                 activityTimeIntervalString: trackingActivityTimeIntervalString,
-                activityDescription: trackingActivityDescription
+                activityDescription: trackingActivityDescription,
+                activityDescriptionTextFieldFocused: false
             ),
             reducer: TrackReducerProducer().produce(),
             environment: TrackEnvironment(
@@ -94,5 +95,44 @@ class TrackReducerTests: XCTestCase {
         store.send(.toggleTracking)
         
         scheduler.advance()
+    }
+    
+    func test_trackReducer_onToggleTrackingOffWhenDescriptionTextFieldWasFocused_removeFocusFromTextField() {
+        let store = TestStore(
+            initialState: TrackState(
+                trackingStartDate: nil,
+                activityTimeIntervalString: trackingActivityTimeIntervalString,
+                activityDescription: trackingActivityDescription,
+                activityDescriptionTextFieldFocused: true
+            ),
+            reducer: TrackReducerProducer().produce(),
+            environment: TrackEnvironment(
+                timeIntervalFormatter: TimeIntervalFormatter(),
+                dateProvider: trackingSetDateProvider,
+                timerTickInterval: trackingTimerTickInterval,
+                scheduler: scheduler.eraseToAnyScheduler(),
+                logger: MuteLogger()
+            )
+        )
+        
+        store.send(.toggleTracking) { [self] in
+            $0.trackingStartDate = trackingSetDateProvider.date
+        }
+        
+        scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
+        trackingSetDateProvider.date = trackingSetDateProvider.date.advanced(by: trackingTimerTickInterval)
+        
+        store.receive(.trackingTick) {
+            $0.activityTimeIntervalString = "00:00"
+        }
+        
+        store.send(.toggleTracking) {
+            $0.trackingStartDate = nil
+            $0.activityDescription = ""
+            $0.activityTimeIntervalString = "00:00"
+            $0.activityDescriptionTextFieldFocused = false
+        }
+        
+        store.receive(.persistActivity(description: trackingActivityDescription, timeInterval: trackingTimerTickInterval))
     }
 }

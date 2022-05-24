@@ -16,18 +16,22 @@ struct TrackState: Equatable {
     
     var activityTimeIntervalString: String
     var activityDescription: String
+    
+    var activityDescriptionTextFieldFocused: Bool
 }
 
 extension TrackState {
     static let live = TrackState(
         trackingStartDate: nil,
         activityTimeIntervalString: "00:00",
-        activityDescription: ""
+        activityDescription: "",
+        activityDescriptionTextFieldFocused: false
     )
     
     static let preview = TrackState(
         trackingStartDate: nil,
         activityTimeIntervalString: "12:34",
-        activityDescription: ""
+        activityDescription: "",
+        activityDescriptionTextFieldFocused: false
     )
 }
