@@ -214,13 +214,13 @@ class SQLiteFileHistoryEntryPersistence: HistoryEntryPersistenceProtocol {
                 return self.removeEntryStatement
             }
             
-            let insertSQL = """
+            let deleteSQL = """
                 DELETE FROM HistoryEntry WHERE ID = ?
             """
             
             try ensure(sqlite3_prepare_v3(
                 connection,
-                insertSQL.cString(using: .utf8),
+                deleteSQL.cString(using: .utf8),
                 -1,
                 0,
                 &self.removeEntryStatement,
