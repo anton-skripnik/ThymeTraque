@@ -129,17 +129,17 @@ struct TrackView_Previews: PreviewProvider {
             )
             .previewInterfaceOrientation(.landscapeRight)
 
-//            TrackView(
-//                store: .preview,
-//                environment: .preview
-//            )
-//            .preferredColorScheme(.light)
-//
-//            TrackView(
-//                store: .preview,
-//                environment: .preview
-//            )
-//            .preferredColorScheme(.dark)
+            TrackView(
+                store: .preview,
+                environment: .preview
+            )
+            .preferredColorScheme(.light)
+
+            TrackView(
+                store: .preview,
+                environment: .preview
+            )
+            .preferredColorScheme(.dark)
         }
     }
 }
