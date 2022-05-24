@@ -85,6 +85,12 @@ class TrackReducerProducer: PullbackReducerProducer {
         
         if let startDate = state.trackingStartDate {
             let timeInterval = environment.dateProvider.date.timeIntervalSince(startDate)
+            
+            // We don't want users tracking entries with too small of a time interval
+            if timeInterval < environment.timerTickInterval {
+                return .none
+            }
+            
             let activityDescription = { () -> String in
                 if state.activityDescription.isEmpty {
                     return "Untitled activity"

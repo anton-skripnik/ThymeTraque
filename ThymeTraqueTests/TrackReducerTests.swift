@@ -51,11 +51,15 @@ class TrackReducerTests: XCTestCase {
         
         scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
         
+        trackingSetDateProvider.date = trackingSetDateProvider.date.advanced(by: trackingTimerTickInterval)
+        
         store.receive(.trackingTick) {
             $0.activityTimeIntervalString = "00:00"
         }
         
         scheduler.advance(by: DispatchQueue.SchedulerTimeType.Stride(floatLiteral: trackingTimerTickInterval))
+        
+        trackingSetDateProvider.date = trackingSetDateProvider.date.advanced(by: trackingTimerTickInterval)
         
         store.receive(.trackingTick)
         
@@ -80,5 +84,15 @@ class TrackReducerTests: XCTestCase {
             $0.activityTimeIntervalString = "00:10"
         }
         
+    }
+    
+    func test_trackReducer_onToggleTrackingFlipsBackBeforeTrackingTick_stateDoesntChangeAndTrackingContinues() {
+        store.send(.toggleTracking) { [self] in
+            $0.trackingStartDate = trackingSetDateProvider.date
+        }
+        
+        store.send(.toggleTracking)
+        
+        scheduler.advance()
     }
 }
