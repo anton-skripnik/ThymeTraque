@@ -13,4 +13,6 @@ enum TrackAction: Equatable {
     case activityDescriptionChanged(String)
     case persistActivity(description: String, timeInterval: TimeInterval)
     case activityDescriptionTextFieldFocused(Bool)
+    case displayActivityPersistenceConfirmation(message: String, shouldIncludeTextInput: Bool)
+    case confirmPersistingActivity(Bool, activityDescription: String?)
 }

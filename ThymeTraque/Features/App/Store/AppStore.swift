@@ -38,9 +38,10 @@ extension AppStoreProducer {
     static let live = AppStoreProducer(
         initialState: .live,
         reducer: AppReducerProducer([
-            PersistHistoryEntryReducerProducer().eraseToAnyProducer(),
             TrackReducerProducer().erasePullbackToAnyProducer(),
             HistoryReducerProducer().erasePullbackToAnyProducer(),
+            PersistHistoryEntryReducerProducer().eraseToAnyProducer(),
+            ConfirmationDialogReducerProducer().eraseToAnyProducer(),
         ]).produce(),
         environment: .live
     )

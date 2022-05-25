@@ -33,6 +33,7 @@ class TrackReducerProducer: PullbackReducerProducer {
                     
                     let interval = environment.dateProvider.date.timeIntervalSince(startDate)
                     state.activityTimeIntervalString = environment.timeIntervalFormatter.string(from: interval)
+                    state.activityTimeInterval = interval
                     
                     return .none
                     
@@ -48,6 +49,39 @@ class TrackReducerProducer: PullbackReducerProducer {
                     // The app-level reducer will handle it.
                     return .none
                     
+                case .displayActivityPersistenceConfirmation(message: _, shouldIncludeTextInput: _):
+                    // The app-level reducer will handle it.
+                    return .none
+                    
+                case .confirmPersistingActivity(let shouldPersist, activityDescription: let fromConfirmationDialogDescription):
+                    func resetState() {
+                        state.trackingStartDate = nil
+                        state.activityDescription = ""
+                        state.activityTimeIntervalString = "00:00"
+                    }
+                    
+                    guard shouldPersist else {
+                        resetState()
+                        return .none
+                    }
+                    
+                    let description = { () -> String in
+                        if !state.activityDescription.isEmpty {
+                            return state.activityDescription
+                        }
+                        
+                        if let activityDescription = fromConfirmationDialogDescription {
+                            return activityDescription
+                        }
+                        
+                        return "Untitled activity"
+                    }()
+                    
+                    let timeInterval = state.activityTimeInterval
+                    
+                    resetState()
+                    
+                    return Effect(value: .persistActivity(description: description, timeInterval: timeInterval))
             }
         }
     }
@@ -69,6 +103,7 @@ class TrackReducerProducer: PullbackReducerProducer {
         environment: TrackEnvironment
     ) -> Effect<TrackAction, Never> {
         state.trackingStartDate = environment.dateProvider.date
+        state.activityTimeInterval = 0.0
                     
         return Effect.timer(
             id: TrackingTickTimerId.self,
@@ -96,22 +131,23 @@ class TrackReducerProducer: PullbackReducerProducer {
                 return .none
             }
             
-            let activityDescription = { () -> String in
-                if state.activityDescription.isEmpty {
-                    return "Untitled activity"
-                } else {
-                    return state.activityDescription
-                }
-            }()
+            let confirmationMessage: String
+            let shouldRequestActivityDescription: Bool
+            if state.activityDescription.isEmpty {
+                shouldRequestActivityDescription = true
+                confirmationMessage = "Provide a description for the activity and tap \"OK\". If you want to discard, tap \"Cancel\""
+            } else {
+                shouldRequestActivityDescription = false
+                confirmationMessage = "Do you want to persist the activity? Tap \"Cancel\" to discard"
+            }
             
-            effectsToReturn.append(Effect(value: .persistActivity(description: activityDescription, timeInterval: timeInterval)))
+            effectsToReturn.append(Effect(value: .displayActivityPersistenceConfirmation(
+                message: confirmationMessage,
+                shouldIncludeTextInput: shouldRequestActivityDescription
+            )))
         } else {
             environment.logger.c("No start date at when tracking completes. This is not how it's supposed to be.")
         }
-        
-        state.trackingStartDate = nil
-        state.activityDescription = ""
-        state.activityTimeIntervalString = "00:00"
         
         // Remove focus from the description text field when user stops tracking.
         state.activityDescriptionTextFieldFocused = false

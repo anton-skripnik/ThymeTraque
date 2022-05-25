@@ -42,6 +42,9 @@
 		6DB01D95283CF404005C9EE7 /* JSONFileHistoryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */; };
 		6DB01D97283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */; };
 		6DB01DA6283CFE0E005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift */; };
+		6DFB1F26283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F25283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift */; };
+		6DFB1F2C283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */; };
+		6DFB1F2E283DFC0800ED4EE6 /* ConfirmationDialogState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,9 @@
 		6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFileHistoryPersistence.swift; sourceTree = "<group>"; };
 		6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteFileHistoryPersitence.swift; sourceTree = "<group>"; };
 		6DB01D9D283CFE08005C9EE7 /* ThymeTraquePerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThymeTraquePerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFB1F25283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayConfirmationDialogView.swift; sourceTree = "<group>"; };
+		6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogReducer.swift; sourceTree = "<group>"; };
+		6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +261,7 @@
 		6D7C790A283AA7EC006038D3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6DFB1F20283DDD6300ED4EE6 /* ConfirmationDialog */,
 				6DB01D6C283B93CF005C9EE7 /* DateProvider */,
 				6D7C7911283ABBB2006038D3 /* DateFormatter */,
 				6DB01D7B283BC6C4005C9EE7 /* HistoryEntryPersistence */,
@@ -301,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				6D7C7918283B55A2006038D3 /* AppState.swift */,
+				6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -309,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB01D50283B69F7005C9EE7 /* AppReducer.swift */,
+				6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */,
 				6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */,
 			);
 			path = Reducer;
@@ -460,6 +469,14 @@
 			path = ThymeTraquePerformanceTests;
 			sourceTree = "<group>";
 		};
+		6DFB1F20283DDD6300ED4EE6 /* ConfirmationDialog */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F25283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift */,
+			);
+			path = ConfirmationDialog;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -606,6 +623,7 @@
 				6DB01D6E283B93DF005C9EE7 /* DateProvider.swift in Sources */,
 				6DB01D84283BCF80005C9EE7 /* HistoryAction.swift in Sources */,
 				6DB01D95283CF404005C9EE7 /* JSONFileHistoryPersistence.swift in Sources */,
+				6DFB1F2C283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift in Sources */,
 				6DB01D5C283B7DDF005C9EE7 /* TrackEnvironment.swift in Sources */,
 				6DB01D86283BCF9A005C9EE7 /* HistoryEnvironment.swift in Sources */,
 				6D7C7919283B55A2006038D3 /* AppState.swift in Sources */,
@@ -613,7 +631,9 @@
 				6DB01D51283B69F7005C9EE7 /* AppReducer.swift in Sources */,
 				6DB01D7D283BC6DB005C9EE7 /* HistoryEntryPersistence.swift in Sources */,
 				6DB01D63283B805F005C9EE7 /* AppStore.swift in Sources */,
+				6DFB1F2E283DFC0800ED4EE6 /* ConfirmationDialogState.swift in Sources */,
 				6D7C7909283A8955006038D3 /* HistoryView.swift in Sources */,
+				6DFB1F26283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift in Sources */,
 				6D7C7913283ABBBE006038D3 /* DateFormatter+Default.swift in Sources */,
 				6DB01D5A283B7DAB005C9EE7 /* TrackAction.swift in Sources */,
 				6DB01D54283B6EFD005C9EE7 /* ReducerProducer.swift in Sources */,

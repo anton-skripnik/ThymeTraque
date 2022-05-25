@@ -20,6 +20,12 @@ class PersistHistoryEntryReducerProducer: ReducerProducer {
                     return .none
                 case .history(_):
                     return .none
+                case .displayConfirmationDialog(title: _, message: _, inputText: _, acceptButtonTitle: _, cancelButtonTitle: _):
+                    return .none
+                case .dismissConfirmationDialog(accepted: _):
+                    return .none
+                case .confirmationDialogInputTextUpdated(_):
+                    return .none
             }
         }
     }
