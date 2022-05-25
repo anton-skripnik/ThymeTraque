@@ -63,6 +63,9 @@ struct RegularVerticalTrackViewLayout: View {
                 VStack {
                     Text(viewStore.activityTimeIntervalString)
                         .font(.system(size: 70.0, weight: .ultraLight, design: .rounded))
+                        .foregroundColor(.white)
+                        .colorMultiply(viewStore.isTracking ? .primary : .secondary)
+                        .animation(.easeInOut, value: viewStore.isTracking)
                     
                     Button {
                         viewStore.send(.toggleTracking)
@@ -110,7 +113,9 @@ struct CompactVerticalTrackViewLayout: View {
                 HStack {
                     Text(viewStore.activityTimeIntervalString)
                         .font(.system(size: 50.0, weight: .ultraLight, design: .rounded))
-                        .padding()
+                        .foregroundColor(.white)
+                        .colorMultiply(viewStore.isTracking ? .primary : .secondary)
+                        .animation(.easeInOut, value: viewStore.isTracking)
                     
                     Button {
                         viewStore.send(.toggleTracking)
