@@ -70,7 +70,7 @@ class TrackReducerProducer: PullbackReducerProducer {
                             return state.activityDescription
                         }
                         
-                        if let activityDescription = fromConfirmationDialogDescription {
+                        if let activityDescription = fromConfirmationDialogDescription, !activityDescription.isEmpty {
                             return activityDescription
                         }
                         
@@ -135,10 +135,10 @@ class TrackReducerProducer: PullbackReducerProducer {
             let shouldRequestActivityDescription: Bool
             if state.activityDescription.isEmpty {
                 shouldRequestActivityDescription = true
-                confirmationMessage = "Provide a description for the activity and tap \"OK\". If you want to discard, tap \"Cancel\""
+                confirmationMessage = "This activity is going to be saved. Provide a description for the activity and tap \"OK\". If you want to discard, tap \"Cancel\""
             } else {
                 shouldRequestActivityDescription = false
-                confirmationMessage = "Do you want to persist the activity? Tap \"Cancel\" to discard"
+                confirmationMessage = "This activity is going to be saved. Tap \"Cancel\" to discard"
             }
             
             effectsToReturn.append(Effect(value: .displayActivityPersistenceConfirmation(

@@ -42,6 +42,7 @@ struct OverlayConfirmationDialogView: ViewModifier {
                         }
                         
                         Text(message)
+                            .multilineTextAlignment(.center)
                             .font(.callout)
                             .padding()
                         
@@ -75,6 +76,11 @@ struct OverlayConfirmationDialogView: ViewModifier {
                 .frame(maxWidth: 320.0)
                 .animation(.none, value: isPresented)
             }
+            .onChange(of: isPresented, perform: { value in
+                if value {
+                    textCapture = ""
+                }
+            })
             .opacity(isPresented ? 1 : 0)
             .animation(.easeInOut(duration: 0.33), value: isPresented)
         }

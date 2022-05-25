@@ -38,13 +38,17 @@
 		6DB01D8A283BCFF2005C9EE7 /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D89283BCFF2005C9EE7 /* HistoryState.swift */; };
 		6DB01D8C283BCFF9005C9EE7 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */; };
 		6DB01D8E283BDB7A005C9EE7 /* HistoryReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */; };
-		6DB01D90283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */; };
+		6DB01D90283BF70C005C9EE7 /* AppDispatchingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D8F283BF70C005C9EE7 /* AppDispatchingReducer.swift */; };
 		6DB01D95283CF404005C9EE7 /* JSONFileHistoryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */; };
 		6DB01D97283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */; };
 		6DB01DA6283CFE0E005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift */; };
 		6DFB1F26283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F25283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift */; };
 		6DFB1F2C283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */; };
 		6DFB1F2E283DFC0800ED4EE6 /* ConfirmationDialogState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */; };
+		6DFB1F37283E25A700ED4EE6 /* ConfirmationDialogAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F36283E25A700ED4EE6 /* ConfirmationDialogAction.swift */; };
+		6DFB1F39283E25B400ED4EE6 /* ConfirmationDialogEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F38283E25B400ED4EE6 /* ConfirmationDialogEnvironment.swift */; };
+		6DFB1F3B283E25D600ED4EE6 /* ConfirmationDialogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F3A283E25D600ED4EE6 /* ConfirmationDialogStore.swift */; };
+		6DFB1F3D283E25E600ED4EE6 /* ConfirmationDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB1F3C283E25E600ED4EE6 /* ConfirmationDialogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +102,7 @@
 		6DB01D89283BCFF2005C9EE7 /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
 		6DB01D8B283BCFF9005C9EE7 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
 		6DB01D8D283BDB7A005C9EE7 /* HistoryReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryReducerTests.swift; sourceTree = "<group>"; };
-		6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistHistoryEntryReducer.swift; sourceTree = "<group>"; };
+		6DB01D8F283BF70C005C9EE7 /* AppDispatchingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDispatchingReducer.swift; sourceTree = "<group>"; };
 		6DB01D92283C15E6005C9EE7 /* HistoryEntryPersistencePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryPersistencePerformanceTests.swift; sourceTree = "<group>"; };
 		6DB01D94283CF404005C9EE7 /* JSONFileHistoryPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFileHistoryPersistence.swift; sourceTree = "<group>"; };
 		6DB01D96283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteFileHistoryPersitence.swift; sourceTree = "<group>"; };
@@ -106,6 +110,10 @@
 		6DFB1F25283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayConfirmationDialogView.swift; sourceTree = "<group>"; };
 		6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogReducer.swift; sourceTree = "<group>"; };
 		6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogState.swift; sourceTree = "<group>"; };
+		6DFB1F36283E25A700ED4EE6 /* ConfirmationDialogAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogAction.swift; sourceTree = "<group>"; };
+		6DFB1F38283E25B400ED4EE6 /* ConfirmationDialogEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogEnvironment.swift; sourceTree = "<group>"; };
+		6DFB1F3A283E25D600ED4EE6 /* ConfirmationDialogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogStore.swift; sourceTree = "<group>"; };
+		6DFB1F3C283E25E600ED4EE6 /* ConfirmationDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +199,7 @@
 				6D7C7900283A88D0006038D3 /* App */,
 				6D7C7902283A88DD006038D3 /* History */,
 				6D7C7901283A88D7006038D3 /* Track */,
+				6DFB1F2F283E23FC00ED4EE6 /* ConfirmationDialog */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -308,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				6D7C7918283B55A2006038D3 /* AppState.swift */,
-				6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -317,8 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB01D50283B69F7005C9EE7 /* AppReducer.swift */,
-				6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */,
-				6DB01D8F283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift */,
+				6DB01D8F283BF70C005C9EE7 /* AppDispatchingReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -477,6 +484,67 @@
 			path = ConfirmationDialog;
 			sourceTree = "<group>";
 		};
+		6DFB1F2F283E23FC00ED4EE6 /* ConfirmationDialog */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F30283E253D00ED4EE6 /* Action */,
+				6DFB1F31283E254400ED4EE6 /* Environment */,
+				6DFB1F35283E259700ED4EE6 /* Reducer */,
+				6DFB1F34283E259300ED4EE6 /* State */,
+				6DFB1F33283E258E00ED4EE6 /* Store */,
+				6DFB1F32283E258900ED4EE6 /* View */,
+			);
+			path = ConfirmationDialog;
+			sourceTree = "<group>";
+		};
+		6DFB1F30283E253D00ED4EE6 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F36283E25A700ED4EE6 /* ConfirmationDialogAction.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		6DFB1F31283E254400ED4EE6 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F38283E25B400ED4EE6 /* ConfirmationDialogEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		6DFB1F32283E258900ED4EE6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F3C283E25E600ED4EE6 /* ConfirmationDialogView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6DFB1F33283E258E00ED4EE6 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F3A283E25D600ED4EE6 /* ConfirmationDialogStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		6DFB1F34283E259300ED4EE6 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F2D283DFC0800ED4EE6 /* ConfirmationDialogState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		6DFB1F35283E259700ED4EE6 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB1F2B283DFBB300ED4EE6 /* ConfirmationDialogReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -616,10 +684,12 @@
 				6D7C790D283AA817006038D3 /* Logger.swift in Sources */,
 				6DB01D79283BC542005C9EE7 /* HistoryEntry.swift in Sources */,
 				6D7C7917283B558C006038D3 /* AppAction.swift in Sources */,
+				6DFB1F37283E25A700ED4EE6 /* ConfirmationDialogAction.swift in Sources */,
 				6DB01D88283BCFA9005C9EE7 /* HistoryReducer.swift in Sources */,
 				6DB01D5E283B7DE5005C9EE7 /* TrackReducer.swift in Sources */,
 				6DB01D97283CF44E005C9EE7 /* SQLiteFileHistoryPersitence.swift in Sources */,
 				6D7C78E3283A7C2F006038D3 /* ContentView.swift in Sources */,
+				6DFB1F39283E25B400ED4EE6 /* ConfirmationDialogEnvironment.swift in Sources */,
 				6DB01D6E283B93DF005C9EE7 /* DateProvider.swift in Sources */,
 				6DB01D84283BCF80005C9EE7 /* HistoryAction.swift in Sources */,
 				6DB01D95283CF404005C9EE7 /* JSONFileHistoryPersistence.swift in Sources */,
@@ -634,12 +704,14 @@
 				6DFB1F2E283DFC0800ED4EE6 /* ConfirmationDialogState.swift in Sources */,
 				6D7C7909283A8955006038D3 /* HistoryView.swift in Sources */,
 				6DFB1F26283DEEA500ED4EE6 /* OverlayConfirmationDialogView.swift in Sources */,
+				6DFB1F3D283E25E600ED4EE6 /* ConfirmationDialogView.swift in Sources */,
 				6D7C7913283ABBBE006038D3 /* DateFormatter+Default.swift in Sources */,
 				6DB01D5A283B7DAB005C9EE7 /* TrackAction.swift in Sources */,
 				6DB01D54283B6EFD005C9EE7 /* ReducerProducer.swift in Sources */,
 				6D7C7907283A8944006038D3 /* TrackView.swift in Sources */,
 				6DB01D8C283BCFF9005C9EE7 /* HistoryStore.swift in Sources */,
-				6DB01D90283BF70C005C9EE7 /* PersistHistoryEntryReducer.swift in Sources */,
+				6DFB1F3B283E25D600ED4EE6 /* ConfirmationDialogStore.swift in Sources */,
+				6DB01D90283BF70C005C9EE7 /* AppDispatchingReducer.swift in Sources */,
 				6D7C78E1283A7C2F006038D3 /* ThymeTraqueApp.swift in Sources */,
 				6DB01D60283B7E16005C9EE7 /* TrackState.swift in Sources */,
 				6DB01D8A283BCFF2005C9EE7 /* HistoryState.swift in Sources */,

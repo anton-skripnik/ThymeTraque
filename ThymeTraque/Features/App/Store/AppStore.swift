@@ -40,8 +40,8 @@ extension AppStoreProducer {
         reducer: AppReducerProducer([
             TrackReducerProducer().erasePullbackToAnyProducer(),
             HistoryReducerProducer().erasePullbackToAnyProducer(),
-            PersistHistoryEntryReducerProducer().eraseToAnyProducer(),
-            ConfirmationDialogReducerProducer().eraseToAnyProducer(),
+            AppDispatchingReducerProducer().eraseToAnyProducer(),
+            ConfirmationDialogReducerProducer().erasePullbackToAnyProducer(),
         ]).produce(),
         environment: .live
     )
@@ -49,6 +49,6 @@ extension AppStoreProducer {
     static let preview = AppStoreProducer(
         initialState: .preivew,
         reducer: AppReducerProducer([]).produce(),
-        environment: .live
+        environment: .preview
     )
 }
